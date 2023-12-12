@@ -1,0 +1,103 @@
+
+npm run serve
+
+scss =>  create app.scss => connect to app.vue
+js => app.vue
+
+router => index.js
+
+npm i bootstrap bootstrap-icons animate.css
+bootstrap-ui => component
+
+VueX => Storage that share component directly
+store => index.js
+        state => global data
+        getters => to change state => just like Computed
+        
+    {{ $store.getters.myNameLength }} => Use mapStateHelper => export default
+    {{ $store.getters.myNameToUpper }}
+
+    backend => http://127.0.0.1:8000/api/v1 => declare in state
+    frontend => http://127.0.0.1:8080
+
+    php artisan migrate:fresh in laravel
+
+
+    we can use v-model and data || formData and methods to accept data
+    but v-model cant accept files upload
+//form input => v-model="name"
+data() {
+        return {
+           name: "",
+           email: "", 
+        }
+    },
+methods: {
+        login() {
+            console.log(formData.get('name'),formData.get('email')); 
+        }
+    },
+
+
+to check recive request data or not => ApiAuthController => register
+use vue router => Programetic Navigation => to direct login page after register success
+to change state(data) such as token,auth in store vuex => we need to use 'actions' or 'mutations'
+actions => async
+mutations => sync *
+
+actions => method(context)
+
+after login => hide login and register btn
+
+middleware for dashboard view => vue router => Navigation Guards
+                                            => Pre-Route and In-Component 
+
+when we only use vuex to store 'auth' and 'token' 
+=> refreshing page leads to login page
+=> to prevent this we also need to store in localStorage 
+=> and then give the datas to vuex
+=> to do this , we need to understand vue lifecycle hooks
+=> app.vue => created() => the first method start woking in running vue app
+auth => localStorage.set => obj to string
+auth => localStorage.get => string to obj
+
+
+fetch api => axios
+npm install axios
+to add headers like authorization => Config Default can be used in after login and App level  for all components
+
+
+
+Sweet alert
+npm install sweetalert2
+
+
+traffic => create traffic before store methods => sleep(5) // 5 seconds
+=> add Loading to show task is processing
+=> to prevent multiple clicking =>  :disabled="isLoading"
+
+
+for showing product lists => automitically display
+component render => auto data display => ProductView => mounted()
+=> use lifecycle method
+beforeMount => Component Render => mounted 
+beforeUpdate => Data update(re-render) => updated
+rows => empty object
+
+
+to use icons => app.scss 
+
+use productFactory to test Pagination
+productSeeder => databaseSeeder
+php artisan migrate:fresh --seed
+
+Paginate => meta => links
+component => Pagination.vue
+
+<Pagination v-if="rows.meta" :links="rows.meta.links" />
+
+Give data from Pagination component to Parent => ProductView
+=> this.$emit('fetchLink',url)
+
+when product delete => check active in Pagination => then update url
+old data => value => use mounted
